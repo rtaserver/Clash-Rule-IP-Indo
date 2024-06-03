@@ -1,3 +1,5 @@
+name: Process NICE RSC
+
 on:
   push:
     branches:
