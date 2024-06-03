@@ -23,16 +23,19 @@ jobs:
       - name: Process the nice.rsc file
         run: |
           echo "Processing nice.rsc..."
-          output_file="processed_nice.txt"
+          output_file="rule-indo.yaml"
           > $output_file  # Create or empty the file
-          
-          while IFS= read -r line
-          do
+
+          echo "payload:" >> $output_file  # Add "payload:" at the beginning of the file
+
+          # Ensuring we read the file line by line
+          while IFS= read -r line; do
             echo "Processing line: $line"  # Debugging line
+            # Matching the pattern add list=nice address="IP/CIDR"
             if [[ $line =~ add\ list=nice\ address=\"([0-9./]+)\" ]]; then
               ip_cidr="${BASH_REMATCH[1]}"
               echo "Matched IP-CIDR: $ip_cidr"  # Debugging line
-              echo "IP-CIDR,$ip_cidr" >> $output_file
+              echo "- IP-CIDR,$ip_cidr" >> $output_file  # Adding "-" before each IP-CIDR
             fi
           done < nice.rsc
 
@@ -43,6 +46,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add processed_nice.txt
+          git add rule-indo.yaml
           git commit -m 'Processed nice.rsc to payload format'
           git push
