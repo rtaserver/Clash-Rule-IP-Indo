@@ -24,7 +24,7 @@ jobs:
 
       - name: Process the nice.rsc file
         run: |
-          python ../../process.py
+          python process.py
 
       - name: Commit changes
         run: |
