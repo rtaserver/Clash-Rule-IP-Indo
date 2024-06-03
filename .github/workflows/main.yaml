@@ -1,0 +1,30 @@
+name: Process NICE RSC To Yaml
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  process-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download nice.rsc file
+        run: curl -o nice.rsc https://raw.githubusercontent.com/Sincan2/qe3/main/nice.rsc
+
+      - name: Process the nice.rsc file
+        run: |
+          python process.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add rule-indo.yaml
+          git commit -m 'Processed nice.rsc to payload format'
+          git push
