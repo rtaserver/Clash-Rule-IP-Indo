@@ -17,19 +17,24 @@ jobs:
       - name: Download nice.rsc file
         run: curl -o nice.rsc https://raw.githubusercontent.com/Sincan2/qe3/main/nice.rsc
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'  # Choose the version of Python you need
-
       - name: Process the nice.rsc file
         run: |
-          python process.py
+          #!/bin/bash
+          echo "Processing nice.rsc..."
+          output_file="processed_nice.txt"
+          echo "" > $output_file  # Create or empty the file
+          while IFS= read -r line
+          do
+            if [[ $line =~ add\ list=nice\ address=\"([0-9./]+)\" ]]; then
+              ip_cidr="${BASH_REMATCH[1]}"
+              echo "IP-CIDR,$ip_cidr" >> $output_file
+            fi
+          done < nice.rsc
 
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add rule-indo.yaml
+          git add processed_nice.txt
           git commit -m 'Processed nice.rsc to payload format'
           git push
