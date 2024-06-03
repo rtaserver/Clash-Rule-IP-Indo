@@ -15,6 +15,7 @@ jobs:
 
       - name: Download nice.rsc file
         run: |
+          rm -f README.md
           curl -o nice.rsc http://ixp.mikrotik.co.id/download/nice.rsc
           echo "Downloaded nice.rsc:"
           cat nice.rsc
