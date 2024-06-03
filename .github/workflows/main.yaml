@@ -17,9 +17,17 @@ jobs:
       - name: Download nice.rsc file
         run: curl -o nice.rsc https://raw.githubusercontent.com/Sincan2/qe3/main/nice.rsc
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Choose the version of Python you need
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt  # Only if you have dependencies, otherwise omit this step
+
       - name: Process the nice.rsc file
         run: |
-          python process.py
+          python ../../process.py
 
       - name: Commit changes
         run: |
