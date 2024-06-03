@@ -16,7 +16,7 @@ jobs:
 
       - name: Download nice.rsc file
         run: |
-          curl -o nice.rsc https://raw.githubusercontent.com/Sincan2/qe3/main/nice.rsc
+          curl -o nice.rsc http://ixp.mikrotik.co.id/download/nice.rsc
           echo "Downloaded nice.rsc:"
           cat nice.rsc
 
