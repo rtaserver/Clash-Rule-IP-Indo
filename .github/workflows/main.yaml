@@ -46,6 +46,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
+          git add nice.rsc
           git add rule-indo.yaml
-          git commit -m 'Processed nice.rsc to payload format'
+          git commit -m "Auto Update $(date +'%Y-%m-%d %H:%M:%S')"
           git push
