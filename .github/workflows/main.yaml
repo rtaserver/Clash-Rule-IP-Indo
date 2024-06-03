@@ -19,10 +19,10 @@ jobs:
           echo "Downloaded nice.rsc:"
           cat nice.rsc
 
-      - name: Filter comments from nice.rsc
+      - name: Filter and replace comments from nice.rsc
         run: |
-          echo "Filtering comments from nice.rsc"
-          grep '^#' nice.rsc > nice_comments.txt
+          echo "Filtering and replacing comments from nice.rsc"
+          grep '^#' nice.rsc | sed 's/^#/-/' > nice_comments.txt
 
       - name: Append comments from nice.rsc to README.md
         run: |
