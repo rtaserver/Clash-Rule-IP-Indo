@@ -1,6 +1,6 @@
 - Script untuk menambahkan IP Address BGP yang terdaftar di Router NICE(OIXP)
 - ke RouterOS dalam ADDRESS-LIST dengan nama "nice"
 - Script created by: Valens Riyadi @ www.mikrotik.co.id
-- Generated at 20 June 2024 01:00:10 WIB ... 11357 lines
-- Generated in 9.258 seconds
+- Generated at 21 June 2024 01:00:12 WIB ... 10395 lines
+- Generated in 10.365 seconds
 - How-to: http://www.mikrotik.co.id/artikel_lihat.php?id=23
